@@ -2,7 +2,7 @@
 
 [![N|Solid](https://pardano.com/images/logo.png)](https://pardano.com)
 
-Pardano is an Iranian website that provides online billing services and this module, helps you to use Pardano.ir Soap webservice easily and quickly in Node.js.
+Pardano is an Iranian website that provides online billing services and this module, helps you to use Pardano.ir Soap webservice easily and quickly in Node.js. The instructions are written in Persian because only Iranian developers will use it.
 
 پردانو یک وبسایت ارائه کننده خدمات پرداخت آنلاین است و این پکیج (ماژول) به شما کمک میکند به راحتی و به سرعت از وب سرویس پردانو در ند جی اس استفاده کنید. این پکیج به سفارش وبسایت پردانو نوشته شده است.
 
@@ -75,10 +75,10 @@ app.get('/pardano/verify', function(req, res){
 
 # نمونه کد
 
-در این مخزن نیز فایلی با نام sample.js قرار دارد که شامل کد نمونه استفاده از این پکیج است.
+در این مخزن نیز یک فایل جاوا اسکریپتی با نام سمپل قرار دارد که شامل کد نمونه استفاده از این پکیج است.
 
 # LICENSE - مجوز استفاده
 
 This package is under Apache 2.0 license.
 
-این پکیج با رعایت بند های مجوز Apache 2.0 قابل استفاده و توسعه میباشد.
+این پکیج با رعایت بند های مجوز آپاچی 2.0 قابل استفاده و توسعه میباشد.
