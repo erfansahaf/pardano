@@ -1,0 +1,28 @@
+{
+  "name": "pardano",
+  "version": "1.0.0",
+  "description": "Pardano.ir Node.js Module",
+  "main": "pardano.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/erfansahaf/pardano.git"
+  },
+  "keywords": [
+    "pardano",
+    "pardano-ir",
+    "pardano-module",
+    "pardano-nodejs"
+  ],
+  "author": "Erfan Sahafnejad",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/erfansahaf/pardano/issues"
+  },
+  "homepage": "https://github.com/erfansahaf/pardano#readme",
+  "dependencies": {
+    "soap": "^0.19.2"
+  }
+}
