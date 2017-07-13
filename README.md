@@ -2,35 +2,38 @@
 
 [![N|Solid](https://pardano.com/images/logo.png)](https://pardano.com)
 
-Pardano is an Iranian website that provides online billing services and this module, helps you to use Pardano.ir Soap webservice easily and quickly in Node.js. The instructions are written in Persian because only Iranian developers will use it.
+[نسخه فارسی مستندات این پکیج](http://github.com/erfansahaf/pardano/blob/master/Fa.md)
 
-پردانو یک وبسایت ارائه کننده خدمات پرداخت آنلاین است و این پکیج (ماژول) به شما کمک میکند به راحتی و به سرعت از وب سرویس پردانو در ند جی اس استفاده کنید. این پکیج به سفارش وبسایت پردانو نوشته شده است.
+Pardano is an Iranian website that provides online billing services and this module, helps you to use Pardano.ir Soap webservice easily and quickly in Node.js.
 
-# نحوه ی نصب
 
-نصب این پکیج نیز مانند دیگر پکیج ها با استفاده از ان پی ام صورت میگیرد:
+# Installation
+
+You can install this package just like the others with NPM:
 
 ```sh
 $ npm install pardano --save
 ```
-با اجرای دستور فوق، پکیج پردانو به پروژه شما اضافه خواهد شد.
 
-# نحوه ی استفاده
+# Usage
 
-ابتدا شما میبایست یک شی از این پکیج ایجاد کنید:
+First of all, you should require pardano module and create an object of it:
 
 ```js
 const Pardano = require('pardano');
-const payment = new Pardan('ای پی آی درگاه شما');
+const payment = new Pardan('YOUR API KEY');
 ```
-حال از طریق ثابت پیمنت به دو متد این پکیج دسترسی خواهید داشت.
 
-# متد های پکیج
+Now you can access methods by `payment` constant.
 
-با استفاده از دو متد زیر میتوانید کاربر را به درگاه پرداخت هدایت و پس از بازگشت کاربر از درگاه، از وضعیت پرداخت مطلع شوید:
+# Methods
 
-## متد sendRequest
-این متد جهت ایجاد لینک پرداخت استفاده میشود:
+This package contains two methods. First, sendRequest which builds payment URL so you can create a hyperlink with payment URL action to redirect user to the bank payment page. Second, verifyRequest that can check transaction status and verify it.
+
+## `sendRequest`:
+
+As you've read before, this method builds payment url:
+
 ```js
 app.get('/pardano', function (req, res) {
     payment.sendRequest(100, 'http://website.ir/pardano/verify', 1500, 'Description', function(err, link){
@@ -42,19 +45,24 @@ app.get('/pardano', function (req, res) {
 
 });
 ```
-پارامتر اول مقدار و قیمت میباشد که باید بصورت تومان و عددی وارد شود.
 
-پارامتر دوم آدرس بازگشت است. کاربر پس از انجام یا لغو تراکنش به این آدرس هدایت خواهد شد.
+First parameter is the amount of transaction that should be in Toman format.
 
-پارامتر سوم شماره سفارش یا فاکتور میباشد که باید بصورت عددی وارد شود.
+Second is your callback URL, where you'll validate and verify transaction. When transaction successs or fails, user will redirect to this URL.
 
-پارامتر چهارم اطلاعات اضافی یا توضیحات تراکنش است.
+Third is order id or invoice number. It should be a number.
 
-پارامتر پنجم نیز تابع کال بک است که دو ورودی ارور و لینک به آن پاس داده میشود. در صورتی مشکلی در ایجاد لینک پرداخت وجود داشته باشد متن آن در این پارامتر ورودی موجود است، در غیر این صورت با مقدار نال پر میشود. پارامتر ورودی دوم نیز لینک پرداخت است، در صورتی که عملیات ایجاد لینک بدون مشکل باشد، این ورودی حاوی لینک پرداخت میباشد. در غیر این صورت با نال پر میشود.
+Fourth is the description which can be include product or transaction detail.
 
-## متد verifyRequest
+Fifth and the last one, is your callback function. This function has two input:
 
-جهت بررسی وضعیت تراکنش پس از بازگشت کاربر از درگاه بانکی به صفحه بازگشتی تعریف شده در متد ایجاد لینک، استفاده میشود:
+`err`: If there is any problem in URL building proccess, this one will be filled with error message. otherwise it will be null.
+
+`link`: If everything goes on without problem, it will contains a bank payment link, otherwise will be null.
+
+## `verifyRequest`:
+
+To check transaction status, you can use this method:
 
 ```js
 app.get('/pardano/verify', function(req, res){
@@ -67,18 +75,20 @@ app.get('/pardano/verify', function(req, res){
 });
 ```
 
-پارامتر اول این متد، آبجکت ریکوئست میباشد. این پارامتر جهت بررسی کد رهگیری تراکنش دریافت میشود.
+First parameter is your web framework request object. This module uses this object to check the authority key.
 
-پارامتر دوم قیمت است که در هدایت کاربر به درگاه بانکی استفاده کردید.
+Second one should be the same as you passed to `sendRequest` method to create payment URL.
 
-پارامتر سوم تابع کال بک میباشد که شامل دو ورودی است. ورودی اول دارای مقدار بولین میباشد که مشخص میکند تراکنش موفقیت آمیز بوده است یا نه. در صورتی که تراکنش موفقیت آمیز نبوده باشد، پارامتر دوم شامل متن خطاست. در غیر این صورت این ورودی با نال پر میشود.
+Third is your callback function which has two input parameters:
 
-# نمونه کد
+`success`: A boolean input which indicates the status of the payment.
 
-در این مخزن نیز یک فایل جاوا اسکریپتی با نام سمپل قرار دارد که شامل کد نمونه استفاده از این پکیج است.
+`message`: If `success` parameter is `false`, this parameter wil contains an error message.
 
-# LICENSE - مجوز استفاده
+# Sample
+
+If you need a sample code, you can take a look at `sample.js` file.
+
+# License
 
 This package is under Apache 2.0 license.
-
-این پکیج با رعایت بند های مجوز آپاچی 2.0 قابل استفاده و توسعه میباشد.
