@@ -30,7 +30,7 @@ Now you can access methods by `payment` constant.
 
 This package contains two methods. First, sendRequest which builds payment URL so you can create a hyperlink with payment URL action to redirect user to the bank payment page. Second, verifyRequest that can check transaction status and verify it.
 
-## `sendRequest`:
+## sendRequest:
 
 As you've read before, this method builds payment url:
 
@@ -60,7 +60,7 @@ Fifth and the last one, is your callback function. This function has two input:
 
 `link`: If everything goes on without problem, it will contains a bank payment link, otherwise will be null.
 
-## `verifyRequest`:
+## verifyRequest:
 
 To check transaction status, you can use this method:
 
@@ -83,7 +83,7 @@ Third is your callback function which has two input parameters:
 
 `success`: A boolean input which indicates the status of the payment.
 
-`message`: If `success` parameter is `false`, this parameter wil contains an error message.
+`message`: If `success` parameter is `false`, this parameter will contains an error message.
 
 # Sample
 
