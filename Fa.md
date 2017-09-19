@@ -1,3 +1,4 @@
+<div dir="rtl">
 # ماژول ند جی اس پردانو
 
 [![N|Solid](https://pardano.com/images/logo.png)](https://pardano.com)
@@ -7,20 +8,22 @@
 # نحوه ی نصب
 
 نصب این پکیج نیز مانند دیگر پکیج ها با استفاده از ان پی ام صورت میگیرد:
-
+</div>
 ```sh
 $ npm install pardano --save
 ```
+<div dir="rtl">
 با اجرای دستور فوق، پکیج پردانو به پروژه شما اضافه خواهد شد.
 
 # نحوه ی استفاده
 
 ابتدا شما میبایست یک شی از این پکیج ایجاد کنید:
-
+</div>
 ```js
 const Pardano = require('pardano');
 const payment = new Pardan('ای پی آی درگاه شما');
 ```
+<div dir="rtl">
 حال از طریق ثابت پیمنت به دو متد این پکیج دسترسی خواهید داشت.
 
 # متد های پکیج
@@ -29,6 +32,7 @@ const payment = new Pardan('ای پی آی درگاه شما');
 
 ## متد sendRequest
 این متد جهت ایجاد لینک پرداخت استفاده میشود:
+</div>
 ```js
 app.get('/pardano', function (req, res) {
     payment.sendRequest(100, 'http://website.ir/pardano/verify', 1500, 'Description', function(err, link){
@@ -40,6 +44,7 @@ app.get('/pardano', function (req, res) {
 
 });
 ```
+<div dir="rtl">
 پارامتر اول مقدار و قیمت میباشد که باید بصورت تومان و عددی وارد شود.
 
 پارامتر دوم آدرس بازگشت است. کاربر پس از انجام یا لغو تراکنش به این آدرس هدایت خواهد شد.
@@ -53,7 +58,7 @@ app.get('/pardano', function (req, res) {
 ## متد verifyRequest
 
 جهت بررسی وضعیت تراکنش پس از بازگشت کاربر از درگاه بانکی به صفحه بازگشتی تعریف شده در متد ایجاد لینک، استفاده میشود:
-
+</div>
 ```js
 app.get('/pardano/verify', function(req, res){
     payment.verifyRequest(req, 100, function(success, message){
@@ -64,7 +69,7 @@ app.get('/pardano/verify', function(req, res){
     });
 });
 ```
-
+<div dir="rtl">
 پارامتر اول این متد، آبجکت ریکوئست میباشد. این پارامتر جهت بررسی کد رهگیری تراکنش دریافت میشود.
 
 پارامتر دوم قیمت است که در هدایت کاربر به درگاه بانکی استفاده کردید.
@@ -78,3 +83,4 @@ app.get('/pardano/verify', function(req, res){
 # مجوز استفاده
 
 این پکیج با رعایت بند های مجوز آپاچی 2.0 قابل استفاده و توسعه میباشد.
+</div>
